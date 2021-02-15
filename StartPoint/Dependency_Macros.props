@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <GLM_HOME>D:\Libs\glm</GLM_HOME>
+    <GLFW_HOME>D:\Libs\GLFW</GLFW_HOME>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(GLFW_HOME)\$(Platform)\include;$(GLM_HOME)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(GLFW_HOME)\$(Platform)\lib-vc2019;$(VULKAN_SDK)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GLM_HOME">
+      <Value>$(GLM_HOME)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GLFW_HOME">
+      <Value>$(GLFW_HOME)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

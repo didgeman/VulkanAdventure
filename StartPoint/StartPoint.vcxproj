@@ -150,6 +150,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependency_Macros.props" />
+    <CustomBuild Include="shaders\simple_shader.vert">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(VULKAN_SDK)\Bin\glslangValidator -V -o $(OutDir)\%(Identity).spv %(Identity)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compiling shader program</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\%(Identity).spv</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+    <CustomBuild Include="shaders\simple_shader.frag">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(VULKAN_SDK)\Bin\glslangValidator -V -o $(OutDir)\%(Identity).spv %(Identity)</Command>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\%(Identity).spv</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\first_app.hpp" />

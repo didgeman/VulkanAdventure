@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{36cc565f-9333-4e37-8491-c34d82df4506}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -35,5 +38,13 @@
     <ClInclude Include="src\first_app.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="shaders\simple_shader.vert">
+      <Filter>shaders</Filter>
+    </CustomBuild>
+    <CustomBuild Include="shaders\simple_shader.frag">
+      <Filter>shaders</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

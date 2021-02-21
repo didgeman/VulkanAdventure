@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="shaders">
-      <UniqueIdentifier>{36cc565f-9333-4e37-8491-c34d82df4506}</UniqueIdentifier>
+      <UniqueIdentifier>{65fcad8e-8d5f-4776-a315-a4ca9c6fb630}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +30,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependency_Macros.props" />
+    <None Include="shaders\simple_shader.vert">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="shaders\simple_shader.frag">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lve_window.hpp">

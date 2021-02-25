@@ -21,6 +21,8 @@ class LveWindow
   public:
     LveWindow(int w, int h, std::string wndname);
     ~LveWindow();
+    LveWindow(const LveWindow&) = delete;
+    LveWindow& operator=(LveWindow&) = delete;
     bool shouldClose();
 };
 

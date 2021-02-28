@@ -3,8 +3,7 @@
 #define GLFW_INCLUDE_VULKAN
 
 #include <string>
-
-
+#include <vulkan/vulkan.h>
 #include "GLFW/glfw3.h"
 
 namespace lve {
@@ -24,6 +23,7 @@ class LveWindow
     LveWindow(const LveWindow&) = delete;
     LveWindow& operator=(LveWindow&) = delete;
     bool shouldClose();
+    void createWindowSurface(VkInstance inst, VkSurfaceKHR *surf);
 };
 
 } // end namespace lve

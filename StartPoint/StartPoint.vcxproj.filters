@@ -30,15 +30,12 @@
     <ClCompile Include="src\lve_pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\lve_device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependency_Macros.props" />
-    <None Include="shaders\simple_shader.vert">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="shaders\simple_shader.frag">
-      <Filter>shaders</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lve_window.hpp">
@@ -47,8 +44,11 @@
     <ClInclude Include="src\first_app.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\lve_device.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\lve_pipeline.hpp">
-      <Filter>shaders</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

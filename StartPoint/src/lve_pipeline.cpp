@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <iostream>
+#include <cassert>
 
 namespace lve {
 
@@ -27,6 +28,7 @@ namespace lve {
     std::ifstream file{filepath, std::ios::ate | std::ios::binary};
 
     if (!file.is_open()) {
+      std::cout << "failed to open file: " + filepath;
       throw std::runtime_error("failed to open file: " + filepath);
     }
 
@@ -43,6 +45,10 @@ namespace lve {
 void LvePipeline::createGraphicsPipeline(const std::string& vertFilepath, const std::string& fragFilepath,
                                          const PipelineConfigInfo& configInfo)
 {
+  assert(configInfo.pipelineLayout != VK_NULL_HANDLE &&
+         "Cannot create graphics pipeline:: no pipelineLayout provided!");
+  assert(configInfo.renderPass != VK_NULL_HANDLE &&
+    "Cannot create graphics pipeline:: no renderPass provided!");
   auto vertCode = readFile(vertFilepath);
   auto fragCode = readFile(fragFilepath);
 
@@ -68,10 +74,18 @@ void LvePipeline::createGraphicsPipeline(const std::string& vertFilepath, const 
 
   VkPipelineVertexInputStateCreateInfo vertexInputInfo;
   vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+  vertexInputInfo.flags = {};
   vertexInputInfo.vertexAttributeDescriptionCount = 0;
   vertexInputInfo.vertexBindingDescriptionCount = 0;
   vertexInputInfo.pVertexAttributeDescriptions = nullptr;
   vertexInputInfo.pVertexBindingDescriptions = nullptr;
+
+  VkPipelineViewportStateCreateInfo viewportInfo {};
+  viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+  viewportInfo.viewportCount = 1;
+  viewportInfo.pViewports = &configInfo.viewport;
+  viewportInfo.scissorCount = 1;
+  viewportInfo.pScissors = &configInfo.scissor;
 
   VkGraphicsPipelineCreateInfo pipelineInfo{};
   pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
@@ -79,8 +93,9 @@ void LvePipeline::createGraphicsPipeline(const std::string& vertFilepath, const 
   pipelineInfo.pStages = shaderStages;
   pipelineInfo.pVertexInputState = &vertexInputInfo;
   pipelineInfo.pInputAssemblyState = &(configInfo.inputAssemblyInfo);
-  pipelineInfo.pViewportState = &(configInfo.viewportInfo);
+  pipelineInfo.pViewportState = &viewportInfo;
   pipelineInfo.pRasterizationState = &(configInfo.rasterizationInfo);
+  pipelineInfo.pMultisampleState = &(configInfo.multisampleInfo);
   pipelineInfo.pColorBlendState = &(configInfo.colorBlendInfo);
   pipelineInfo.pDepthStencilState = &(configInfo.depthStencilInfo);
   pipelineInfo.pDynamicState = nullptr;
@@ -126,13 +141,6 @@ PipelineConfigInfo LvePipeline::defaultPipelineConfigInfo(uint32_t width, uint32
 
   configInfo.scissor.offset = { 0, 0 };
   configInfo.scissor.extent = { width, height };
-
-  // Known issue: this creates a self-referencing structure. Fixed in tutorial 05
-  configInfo.viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-  configInfo.viewportInfo.viewportCount = 1;
-  configInfo.viewportInfo.pViewports = &configInfo.viewport;
-  configInfo.viewportInfo.scissorCount = 1;
-  configInfo.viewportInfo.pScissors = &configInfo.scissor;
 
   configInfo.rasterizationInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
   configInfo.rasterizationInfo.depthClampEnable = VK_FALSE;

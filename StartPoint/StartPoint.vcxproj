@@ -148,6 +148,7 @@
     <ClCompile Include="src\first_app.cpp" />
     <ClCompile Include="src\lve_device.cpp" />
     <ClCompile Include="src\lve_pipeline.cpp" />
+    <ClCompile Include="src\lve_swap_chain.cpp" />
     <ClCompile Include="src\lve_window.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
@@ -165,12 +166,14 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(VULKAN_SDK)\Bin\glslangValidator -V -o $(OutDir)\%(Identity).spv %(Identity)</Command>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\%(Identity).spv</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\first_app.hpp" />
     <ClInclude Include="src\lve_device.hpp" />
     <ClInclude Include="src\lve_pipeline.hpp" />
+    <ClInclude Include="src\lve_swap_chain.hpp" />
     <ClInclude Include="src\lve_window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

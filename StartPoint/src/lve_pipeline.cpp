@@ -59,7 +59,7 @@ void LvePipeline::createGraphicsPipeline(const std::string& vertFilepath, const 
   shaderStages[0].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
   shaderStages[0].stage = VK_SHADER_STAGE_VERTEX_BIT;
   shaderStages[0].module = vertShaderModule;
-  shaderStages[0].pName = "main";
+  shaderStages[0].pName = "main1";
   shaderStages[0].flags = 0;
   shaderStages[0].pNext = nullptr;
   shaderStages[0].pSpecializationInfo = nullptr;
@@ -67,14 +67,14 @@ void LvePipeline::createGraphicsPipeline(const std::string& vertFilepath, const 
   shaderStages[1].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
   shaderStages[1].stage = VK_SHADER_STAGE_FRAGMENT_BIT;
   shaderStages[1].module = fragShaderModule;
-  shaderStages[1].pName = "main";
+  shaderStages[1].pName = "main2";
   shaderStages[1].flags = 0;
   shaderStages[1].pNext = nullptr;
   shaderStages[1].pSpecializationInfo = nullptr;
 
   VkPipelineVertexInputStateCreateInfo vertexInputInfo;
   vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-  vertexInputInfo.flags = {};
+  vertexInputInfo.flags = 0;
   vertexInputInfo.vertexAttributeDescriptionCount = 0;
   vertexInputInfo.vertexBindingDescriptionCount = 0;
   vertexInputInfo.pVertexAttributeDescriptions = nullptr;
@@ -124,10 +124,13 @@ void LvePipeline::createShaderModule(const std::vector<char>& code, VkShaderModu
   }
 }
 
-PipelineConfigInfo LvePipeline::defaultPipelineConfigInfo(uint32_t width, uint32_t height)
-{
-  PipelineConfigInfo configInfo{};
+void LvePipeline::bind(VkCommandBuffer commandBuffer) {
+  vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
+}
 
+
+PipelineConfigInfo LvePipeline::defaultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height)
+{
   configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
   configInfo.inputAssemblyInfo.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
   configInfo.inputAssemblyInfo.primitiveRestartEnable = VK_FALSE;

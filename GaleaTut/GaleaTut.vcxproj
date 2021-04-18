@@ -22,8 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{9703bbc0-a952-4852-81d0-a145fed197e0}</ProjectGuid>
-    <RootNamespace>StartPoint</RootNamespace>
+    <RootNamespace>GaleaTut</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>GaleaTut</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,7 +66,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="Dependency_Macros.props" />
+    <Import Project="..\GaleaTut\Dependency_Macros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -74,12 +75,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\tmp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -145,12 +150,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\first_app.cpp" />
-    <ClCompile Include="src\lve_device.cpp" />
-    <ClCompile Include="src\lve_pipeline.cpp" />
-    <ClCompile Include="src\lve_swap_chain.cpp" />
-    <ClCompile Include="src\lve_window.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="..\GaleaTut\src\first_app.cpp" />
+    <ClCompile Include="..\GaleaTut\src\lve_device.cpp" />
+    <ClCompile Include="..\GaleaTut\src\lve_pipeline.cpp" />
+    <ClCompile Include="..\GaleaTut\src\lve_swap_chain.cpp" />
+    <ClCompile Include="..\GaleaTut\src\lve_window.cpp" />
+    <ClCompile Include="..\GaleaTut\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependency_Macros.props" />
@@ -170,11 +175,11 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\first_app.hpp" />
-    <ClInclude Include="src\lve_device.hpp" />
-    <ClInclude Include="src\lve_pipeline.hpp" />
-    <ClInclude Include="src\lve_swap_chain.hpp" />
-    <ClInclude Include="src\lve_window.hpp" />
+    <ClInclude Include="..\GaleaTut\src\first_app.hpp" />
+    <ClInclude Include="..\GaleaTut\src\lve_device.hpp" />
+    <ClInclude Include="..\GaleaTut\src\lve_pipeline.hpp" />
+    <ClInclude Include="..\GaleaTut\src\lve_swap_chain.hpp" />
+    <ClInclude Include="..\GaleaTut\src\lve_window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
